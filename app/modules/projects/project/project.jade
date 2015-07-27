@@ -2,10 +2,12 @@ div.wrapper
     tg-project-menu
     div.centered.single-project
         section.single-project-intro
-            h1
-                span.green(class="project-name") {{::vm.project.get("name")}}
-                span.private(ng-if="::vm.project.get('is_private')", title="{{'PROJECT.PRIVATE' | translate}}")
-                    include ../../../svg/lock.svg
+            div.intro-options
+                h1
+                    span.project-name {{::vm.project.get("name")}}
+                    span.private(ng-if="::vm.project.get('is_private')", title="{{'PROJECT.PRIVATE' | translate}}")
+                        include ../../../svg/lock.svg
+                div(tg-watch-like)
             p.description {{vm.project.get('description')}}
 
             div.single-project-tags.tags-container(ng-if="::vm.project.get('tags').size")
