@@ -63,6 +63,8 @@ urls = {
     "project-templates": "/project-templates"
     "project-modules": "/projects/%s/modules"
     "bulk-update-projects-order": "/projects/bulk_update_order"
+    "project-like": "/projects/%s/like"
+    "project-unlike": "/projects/%s/unlike"
 
     # Project Values - Choises
     "userstory-statuses": "/userstory-statuses"

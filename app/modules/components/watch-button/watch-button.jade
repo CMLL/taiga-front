@@ -1,0 +1,29 @@
+a.watch-button.watch-container(href="",
+                               title="Watch this project",
+                               ng-click="vm.showWatchOptions = !vm.showWatchOptions"
+                               ng-class="{'active': vm.project.get('is_watched')}")
+    span.watch-icon
+        include ../../../svg/watch.svg
+    span Watch
+    span.icon.icon-arrow-up
+
+ul.watch-options(ng-class="{'hidden': !vm.showWatchOptions}")
+    li
+        a.active(href="", title="Receive all notifications")
+            span(translate="PROJECT.NOTIFICATIONS.ALL")
+            span.watch-check
+                include ../../../svg/check.svg
+    li
+        a(href="", title="Only involved")
+            span(translate="PROJECT.NOTIFICATIONS.INVOLVED")
+            span.hidden.watch-check
+                include ../../../svg/check.svg
+    li
+        a(href="", title="Show activity only in timeline")
+            span(translate="PROJECT.NOTIFICATIONS.NONE")
+            span.hidden.watch-check
+                include ../../../svg/check.svg
+
+a.watch-button.watch-container(href="",
+                              title="Total watchers")
+    span {{ vm.project.get('watchers') }}
