@@ -65,6 +65,8 @@ urls = {
     "bulk-update-projects-order": "/projects/bulk_update_order"
     "project-like": "/projects/%s/like"
     "project-unlike": "/projects/%s/unlike"
+    "project-watch": "/projects/%s/watch"
+    "project-unwatch": "/projects/%s/unwatch"
 
     # Project Values - Choises
     "userstory-statuses": "/userstory-statuses"

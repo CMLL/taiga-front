@@ -5,7 +5,8 @@ div.wrapper
             div.intro-options
                 h1
                     span.project-name {{::vm.project.get("name")}}
-                    span.private(ng-if="::vm.project.get('is_private')", title="{{'PROJECT.PRIVATE' | translate}}")
+                    span.private(ng-if="::vm.project.get('is_private')",
+                                 title="{{'PROJECT.PRIVATE' | translate}}")
                         include ../../../svg/lock.svg
                 div.track-buttons-container
                     tg-like-button(project="vm.project")
@@ -32,4 +33,5 @@ div.wrapper
                 // h2.title Organizations
                 // div.involved-organization
                 //     a(href="", title="User Name")
-                //         img(src="https://s3.amazonaws.com/uifaces/faces/twitter/dan_higham/48.jpg", alt="{{member.full_name}}")
+                //         img(src="https://s3.amazonaws.com/uifaces/faces/twitter/dan_higham/48.jpg",
+                //             alt="{{member.full_name}}")
