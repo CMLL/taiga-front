@@ -7,7 +7,7 @@ div.wrapper
                     span.project-name {{::vm.project.get("name")}}
                     span.private(ng-if="::vm.project.get('is_private')", title="{{'PROJECT.PRIVATE' | translate}}")
                         include ../../../svg/lock.svg
-                div.like-watch-container
+                div.track-buttons-container
                     tg-like-button(project="vm.project")
                     tg-watch-button(project="vm.project")
 

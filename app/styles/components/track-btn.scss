@@ -1,62 +1,46 @@
 //////////////////////
-//Watch buttons
+//Watch like buttons
 //////////////////////
 
-// CODE EXAMPLE
-// a.watch-button.watch-container(href="", title="Like this project")
-//     span.watch-icon
-//         include ../../../svg/watch.svg
-//     span Watch
-//     span.icon-arrow-up
-//
-// ul.watch-options(ng-class="{'hidden': !vm.toggleWatch}")
-//     li
-//         a.active
-//             span All
-//             span.watch-check
-//                 include ../../../svg/check.svg
-//     li
-//         a
-//             span Only involved
-//             span.hidden.watch-check
-//                 include ../../../svg/check.svg
-//     li
-//         a
-//             span None
-//             span.hidden.watch-check
-//                 include ../../../svg/check.svg
-
-
-.watch-button {
-    align-items: center;
-    background: $whitish;
-    border-radius: 4px;
-    display: inline-flex;
-    padding-right: .5rem;
+.track-buttons-container {
+    padding-bottom: 1rem;
     position: relative;
-    width: 150px;
+}
+
+.track-button {
+    align-items: stretch;
+    display: inline-flex;
+    position: relative;
+    .track-inner {
+        align-items: stretch;
+        background: $whitish;
+        border-radius: 4px 0 0 4px;
+        display: inline-flex;
+        flex: 1;
+        margin-right: .1rem;
+        width: 120px;
+        &:hover {
+            background: darken($whitish, 5%);
+            transition: background .3s;
+        }
+        span {
+            align-self: center;
+        }
+    }
     &:hover {
-        background: darken($whitish, 10%);
         color: $blackish;
-        transition: background .3s;
     }
     &.active {
-        background: rgba($primary-light, .2);
-        .watch-icon {
-            background: $primary-light;
-            path {
-                fill: $white;
-            }
+        .track-inner {
+            background: rgba($primary-light, .2);
         }
     }
     &.watch-container {
         margin-right: 1rem;
         position: relative;
     }
-    .watch-icon {
-        background: darken($whitish, 10%);
-        margin-right: .75rem;
-        padding: .4rem .5rem .4rem .4rem;
+    .track-icon {
+        padding: .3rem .75rem;
         svg {
             height: 1.1rem;
             position: relative;
@@ -64,13 +48,25 @@
             width: 1.1rem;
         }
         path {
-            fill: $blackish;
+            fill: $grayer;
         }
     }
     .icon-arrow-up {
         margin-left: auto;
+        margin-right: .25rem;
         transform: rotate(180deg);
     }
+    .track-button-counter {
+        align-items: center;
+        border: 1px solid $whitish;
+        display: flex;
+        justify-content: center;
+        min-width: 2rem;
+    }
+}
+
+.like-button {
+    margin-right: 1rem;
 }
 
 .watch-options {

@@ -1,11 +1,13 @@
-a.watch-button.watch-container(href="",
+a.track-button.watch-button.watch-container(href="",
                                title="Watch this project",
                                ng-click="vm.showWatchOptions = !vm.showWatchOptions"
                                ng-class="{'active': vm.project.get('is_watched')}")
-    span.watch-icon
-        include ../../../svg/watch.svg
-    span Watch
-    span.icon.icon-arrow-up
+    span.track-inner
+        span.track-icon
+            include ../../../svg/watch.svg
+        span Watch
+        span.icon.icon-arrow-up
+    span.track-button-counter {{ vm.project.get('watchers') }}
 
 ul.watch-options(ng-class="{'hidden': !vm.showWatchOptions}")
     li
@@ -23,7 +25,3 @@ ul.watch-options(ng-class="{'hidden': !vm.showWatchOptions}")
             span(translate="PROJECT.NOTIFICATIONS.NONE")
             span.hidden.watch-check
                 include ../../../svg/check.svg
-
-a.watch-button.watch-container(href="",
-                              title="Total watchers")
-    span {{ vm.project.get('watchers') }}
