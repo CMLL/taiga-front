@@ -8,15 +8,15 @@ class WatchButtonService extends taiga.Service
 
     constructor: (@rs, @currentUserService) ->
 
-    watch: (project, notifyPolicy) ->
-        return @rs.projects.watchProject(project.get("id"), notifyPolicy).then =>
+    watch: (project, notifyLevel) ->
+        return @rs.projects.watchProject(project.get("id"), notifyLevel).then =>
             watchers = project.get("watchers").toJS()
             watchers = _.union(watchers, [@currentUserService.getUser().get("id")])
 
             return project.merge({
                 is_watched: true,
                 watchers: watchers
-                notify_policy: notifyPolicy
+                notify_level: notifyLevel
             })
 
     unwatch: (project) ->
@@ -27,6 +27,7 @@ class WatchButtonService extends taiga.Service
             return project.merge({
                 is_watched: false,
                 watchers: watchers
+                notify_level: null
             })
 
 angular.module("taigaComponents").service("tgWatchButtonService", WatchButtonService)
