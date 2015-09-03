@@ -1,10 +1,13 @@
 a.track-button.like-button.like-container(href="",
-                             title="Like this project",
+                             title="{{ 'PROJECT.LIKE_BUTTON.BUTTON_TITLE' | translate }}",
                              ng-click="vm.toggleLike()",
                              ng-class="{'active': vm.project.get('is_liked')}")
+
     span.track-inner
         span.track-icon
             include ../../../svg/like.svg
-        span(ng-if="!vm.project.get('is_liked')") Like
-        span(ng-if="vm.project.get('is_liked')") Unlike
-    span.track-button-counter {{ vm.project.get('likes') }}
+        span(ng-if="!vm.project.get('is_liked')", translate="PROJECT.LIKE_BUTTON.LIKE")
+        span(ng-if="vm.project.get('is_liked')", translate="PROJECT.LIKE_BUTTON.UNLIKE")
+
+    span.track-button-counter(title="{{ 'PROJECT.LIKE_BUTTON.COUNTER_TITLE' | translate}}")
+        {{ vm.project.get('likes') }}

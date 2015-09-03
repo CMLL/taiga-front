@@ -1,48 +1,51 @@
-//- NOTIFY LEVEL CHOICES:
-//-   1 - Only involved
-//-   2 - Receive all
-//-   3 - No notifications
-
 a.track-button.watch-button.watch-container(href="",
-                                            title="Watch this project",
+                                            title="{{ 'PROJECT.WATCH_BUTTON.BUTTON_TITLE' | translate }}",
                                             ng-click="vm.toggleWatcherOptions()",
                                             ng-class="{'active': vm.project.get('is_watched')}")
     span.track-inner
         span.track-icon
             include ../../../svg/watch.svg
-        span(ng-if="!vm.project.get('is_watched')") Watch
-        span(ng-if="vm.project.get('is_watched')") Watching
+        span(ng-if="!vm.project.get('is_watched')", translate="PROJECT.WATCH_BUTTON.WATCH")
+        span(ng-if="vm.project.get('is_watched')", translate="PROJECT.WATCH_BUTTON.WATCHING")
         span.icon.icon-arrow-up
-    span.track-button-counter {{ vm.project.get('watchers').size }}
+
+    span.track-button-counter(title="{{ 'PROJECT.WATCH_BUTTON.COUNTER_TITLE' | translate }}")
+        {{ vm.project.get('watchers').size }}
+
 
 ul.watch-options(ng-class="{'hidden': !vm.showWatchOptions}")
+    //- NOTIFY LEVEL CHOICES:
+    //-   1 - Only involved
+    //-   2 - Receive all
+    //-   3 - No notifications
+
     li
         a(href="",
-          title="Receive all notifications",
+          title="{{ 'PROJECT.WATCH_BUTTON.OPTIONS.NOTIFY_ALL_TITLE' | translate }}",
           ng-click="vm.watch(2)",
           ng-class="{'active': vm.project.get('is_watched') && vm.project.get('notify_level') == 2}")
-            span(translate="PROJECT.NOTIFICATIONS.ALL")
+            span(translate="PROJECT.WATCH_BUTTON.OPTIONS.NOTIFY_ALL")
             span.watch-check(ng-if="vm.project.get('is_watched') && vm.project.get('notify_level') == 2")
                 include ../../../svg/check.svg
     li
         a(href="",
-          title="Only involved",
+          title="{{ 'PROJECT.WATCH_BUTTON.OPTIONS.NOTIFY_INVOLVED_TITLE' | translate }}",
           ng-click="vm.watch(1)",
           ng-class="{'active': vm.project.get('is_watched') && vm.project.get('notify_level') == 1}")
-            span(translate="PROJECT.NOTIFICATIONS.INVOLVED")
+            span(translate="PROJECT.WATCH_BUTTON.OPTIONS.NOTIFY_INVOLVED")
             span.watch-check(ng-if="vm.project.get('is_watched') && vm.project.get('notify_level') == 1")
                 include ../../../svg/check.svg
     li
         a(href="",
-          title="No notifications",
+          title="{{ 'PROJECT.WATCH_BUTTON.OPTIONS.NOTIFY_NONE_TITLE' | translate }}",
           ng-click="vm.watch(3)",
           ng-class="{'active': vm.project.get('is_watched') && vm.project.get('notify_level') == 3}")
-            span(translate="PROJECT.NOTIFICATIONS.NONE")
+            span(translate="PROJECT.WATCH_BUTTON.OPTIONS.NOTIFY_NONE")
             span.watch-check(ng-if="vm.project.get('is_watched') && vm.project.get('notify_level') == 3")
                 include ../../../svg/check.svg
 
     li(ng-if="vm.project.get('is_watched')")
         a(href="",
-          title="Unwatch",
+          title="{{ 'PROJECT.WATCH_BUTTON.OPTIONS.UNWATCH_TITLE' | translate }}",
           ng-click="vm.unwatch()")
-            span Unwatch
+            span(translate="PROJECT.WATCH_BUTTON.OPTIONS.UNWATCH")

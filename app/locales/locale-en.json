@@ -660,11 +660,6 @@
         "SECTION_PROJECTS": "Projects",
         "HELP": "Reorder your projects to set in the top the most used ones.<br/> The top 10 projects will appear in the top navigation bar project list",
         "PRIVATE": "Private project",
-        "NOTIFICATIONS": {
-            "ALL": "Receive all notifications",
-            "INVOLVED": "Only involved",
-            "NONE": "Show activity only in timeline"
-        },
         "STATS": {
             "PROJECT": "project<br/> points",
             "DEFINED": "defined<br/> points",
@@ -725,6 +720,28 @@
             "ERROR_MESSAGE": "Our Oompa Loompas have some problems importing your dump data: {{error_message}}",
             "ERROR_MAX_SIZE_EXCEEDED": "'{{fileName}}' ({{fileSize}}) is too heavy for our Oompa Loompas, try it with a smaller than ({{maxFileSize}})",
             "SYNC_SUCCESS": "Your project has been imported successfuly"
+        },
+        "LIKE_BUTTON": {
+            "LIKE": "Like",
+            "UNLIKE": "Unlike",
+            "BUTTON_TITLE": "Like or unlike this project",
+            "COUNTER_TITLE": "Number of likes for this project"
+        },
+        "WATCH_BUTTON": {
+            "BUTTON_TITLE": "Watch this project and set notification policy",
+            "WATCH": "Watch",
+            "WATCHING": "Watching",
+            "COUNTER_TITLE": "Number of watchers for this project",
+            "OPTIONS": {
+                "NOTIFY_ALL": "Receive all notifications",
+                "NOTIFY_ALL_TITLE": "Receive all notifications for this project",
+                "NOTIFY_INVOLVED": "Only involved",
+                "NOTIFY_INVOLVED_TITLE": "Recive notificacions only when you are involved",
+                "NOTIFY_NONE": "Mute notifications",
+                "NOTIFY_NONE_TITLE": "Mute all notifications.",
+                "UNWATCH": "Unwatch",
+                "UNWATCH_TITLE": "Unwatch this project"
+            }
         }
     },
     "LIGHTBOX": {
