@@ -9,5 +9,4 @@ a.track-button.like-button.like-container(href="",
         span(ng-if="!vm.project.get('is_liked')", translate="PROJECT.LIKE_BUTTON.LIKE")
         span(ng-if="vm.project.get('is_liked')", translate="PROJECT.LIKE_BUTTON.UNLIKE")
 
-    span.track-button-counter(title="{{ 'PROJECT.LIKE_BUTTON.COUNTER_TITLE' | translate}}")
-        {{ vm.project.get('likes') }}
+    span.track-button-counter(title="{{ 'PROJECT.LIKE_BUTTON.COUNTER_TITLE' | translate}}") {{ vm.project.get('likes') }}

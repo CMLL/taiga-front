@@ -9,8 +9,7 @@ a.track-button.watch-button.watch-container(href="",
         span(ng-if="vm.project.get('is_watched')", translate="PROJECT.WATCH_BUTTON.WATCHING")
         span.icon.icon-arrow-up
 
-    span.track-button-counter(title="{{ 'PROJECT.WATCH_BUTTON.COUNTER_TITLE' | translate }}")
-        {{ vm.project.get('watchers').size }}
+    span.track-button-counter(title="{{ 'PROJECT.WATCH_BUTTON.COUNTER_TITLE' | translate }}") {{ vm.project.get('watchers').size }}
 
 
 ul.watch-options(ng-class="{'hidden': !vm.showWatchOptions}")
