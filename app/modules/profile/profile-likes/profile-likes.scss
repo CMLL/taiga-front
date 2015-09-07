@@ -1,0 +1,58 @@
+.profile-filter {
+    align-items: center;
+    background: $whitish;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding: .5rem 1rem;
+    .searchbox {
+        align-items: center;
+        display: flex;
+        flex: 1;
+        .icon-search {
+            color: grayer;
+            margin-right: .5rem;
+        }
+        input {
+            border: 0;
+            flex: 1;
+        }
+    }
+    .filters {
+        a {
+            display: inline-block;
+            padding: 0 .5rem;
+        }
+    }
+}
+
+%profile-likes {
+    border-bottom: 1px solid $whitish;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    h1 {
+        @extend %larger;
+        @extend %normal;
+        @extend %text;
+        margin-bottom: 0;
+        text-transform: none;
+    }
+    p {
+        @extend %small;
+        margin-bottom: 0;
+    }
+    .profile-project-likers {
+        margin-right: .5rem;
+        @warn 'This should be updated with an SVG when watchers branch is merged';
+    }
+}
+
+.profile-project-like {
+    @extend %profile-likes;
+}
+
+.profile-ticket-like {
+    @extend %profile-likes;
+    display: none;
+}
