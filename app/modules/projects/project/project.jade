@@ -10,7 +10,7 @@ div.wrapper
                         include ../../../svg/lock.svg
                 div.track-buttons-container
                     tg-like-button(project="vm.project")
-                    tg-watch-button(project="vm.project")
+                    tg-watch-button(project="vm.project", ng-mouseleave="vm.toggleWatcherOptions()")
 
             p.description {{vm.project.get('description')}}
 
