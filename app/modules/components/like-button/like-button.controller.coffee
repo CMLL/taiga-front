@@ -13,17 +13,11 @@ class LikeButtonController
             @._unlike()
 
     _like: ->
-        onSuccess = (project) =>
-            @.project = project
-        onError = =>
+        return @likeButtonService.like(@.project.get('id')).catch () =>
             @confirm.notify("error")
-        @likeButtonService.like(@.project).then(onSuccess, onError)
 
     _unlike: ->
-        onSuccess = (project) =>
-            @.project = project
-        onError = =>
+        return @likeButtonService.unlike(@.project.get('id')).catch () =>
             @confirm.notify("error")
-        @likeButtonService.unlike(@.project).then(onSuccess, onError)
 
 angular.module("taigaComponents").controller("LikeButton", LikeButtonController)

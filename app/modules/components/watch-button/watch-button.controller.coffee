@@ -7,28 +7,17 @@ class WatchButtonController
     constructor: (@confirm, @watchButtonService)->
         @.showWatchOptions = false
 
-    toggleWatcherOptions: ->
-        @.showWatchOptions = not @.showWatchOptions
+    toggleWatcherOptions: () ->
+        @.showWatchOptions = !@.showWatchOptions
 
     watch: (notifyLevel) ->
-        onSuccess = (project) =>
-            @.project = project
-            @.toggleWatcherOptions()
-        onError = =>
-            @.toggleWatcherOptions()
-            @confirm.notify("error")
-
-        @watchButtonService.watch(@.project, notifyLevel).then(onSuccess, onError)
+        @watchButtonService.watch(@.project.get('id'), notifyLevel)
+            .catch () => @confirm.notify("error")
+            .finally () => @.showWatchOptions = false
 
     unwatch: ->
-        onSuccess = (project) =>
-            @.project = project
-            @.toggleWatcherOptions()
-        onError = =>
-            @.toggleWatcherOptions()
-            @confirm.notify("error")
-
-        @watchButtonService.unwatch(@.project).then(onSuccess, onError)
-
+        @watchButtonService.unwatch(@.project.get('id'))
+            .catch () => @confirm.notify("error")
+            .finally () => @.showWatchOptions = false
 
 angular.module("taigaComponents").controller("WatchButton", WatchButtonController)

@@ -8,6 +8,7 @@ div.wrapper
                     span.private(ng-if="::vm.project.get('is_private')",
                                  title="{{'PROJECT.PRIVATE' | translate}}")
                         include ../../../svg/lock.svg
+
                 div.track-buttons-container
                     tg-like-button(project="vm.project")
                     tg-watch-button(project="vm.project", ng-mouseleave="vm.toggleWatcherOptions()")
@@ -25,7 +26,7 @@ div.wrapper
             section.involved-data
                 h2.title {{"PROJECT.SECTION.TEAM" | translate}}
                 ul.involved-team
-                  li(tg-repeat="member in ::vm.project.get('members')")
+                  li(tg-repeat="member in ::vm.members")
                     a(tg-nav="user-profile:username=member.get('username')",
                       title="{{::member.get('full_name')}}")
                         img(ng-src="{{::member.get('photo')}}", alt="{{::member.get('full_name')}}")
