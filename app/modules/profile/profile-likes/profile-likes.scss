@@ -20,8 +20,13 @@
     }
     .filters {
         a {
+            color: $gray-light;
             display: inline-block;
             padding: 0 .5rem;
+            &:hover,
+            &.active {
+                color: $blackish;
+            }
         }
     }
 }
@@ -29,14 +34,9 @@
 %profile-likes {
     border-bottom: 1px solid $whitish;
     display: flex;
-    justify-content: space-between;
     padding: 1rem;
-    h1 {
-        @extend %larger;
-        @extend %normal;
-        @extend %text;
-        margin-bottom: 0;
-        text-transform: none;
+    a:hover {
+        color: $primary;
     }
     p {
         @extend %small;
@@ -49,10 +49,55 @@
 }
 
 .profile-project-like {
+    @warn 'merge this styles with project-list-single because its the same layout';
     @extend %profile-likes;
+    justify-content: space-between;
+    h2 {
+        @extend %larger;
+        @extend %normal;
+        @extend %text;
+        margin-bottom: 0;
+        text-transform: none;
+    }
 }
 
 .profile-ticket-like {
     @extend %profile-likes;
-    display: none;
+    @warn 'merge this styles with working-on duty-single because its the same layout';
+    .profile-tickets-avatar {
+        flex-basis: 3rem;
+        flex-shrink: 0;
+        margin-right: .5rem;
+        min-width: 3rem;
+    }
+    h2 {
+        @extend %medium;
+        @extend %normal;
+        @extend %text;
+        margin: .25rem 0 0;
+        text-transform: none;
+
+    }
+    img {
+        width: 100%;
+    }
+    .ticket-type,
+    .ticket-project {
+        margin-right: .3rem;
+    }
+    .ticket-project {
+        @extend %small;
+        color: $gray-light;
+    }
+    .profile-tickets-data {
+        flex: 1;
+        margin-right: 1rem;
+    }
+    .ticket-id {
+        color: $gray-light;
+        margin-right: .3rem;
+    }
+    .profile-tickets-track {
+        margin-left: auto;
+    }
 }

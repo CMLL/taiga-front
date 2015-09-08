@@ -4,7 +4,7 @@ section.profile-likes
             span.icon-search
             input(type="text", placeholder="Filter liked items")
         div.filters
-            a(href="", title="All") All
+            a.active(href="", title="All") All
             a(href="", title="All") Projects
             a(href="", title="All") Stories
             a(href="", title="All") Tasks
@@ -12,7 +12,7 @@ section.profile-likes
             
     div.profile-project-like
         div.profile-project-data
-            h1 
+            h2
                 a(href="", title="Visit PROJECT NAME") Project title
                 span.private
             p Project description
@@ -27,17 +27,16 @@ section.profile-likes
                 span 12
             
     div.profile-ticket-like
-        div.profile-tickets-avatar
-            a(href="", title="Go to USER NAME profile")
-                img(src="https://s3.amazonaws.com/uifaces/faces/twitter/thejacklonergan/128.jpg", alt="USER NAME")
+        a.profile-tickets-avatar(href="", title="Go to USER NAME profile")
+            img(src="https://s3.amazonaws.com/uifaces/faces/twitter/thejacklonergan/128.jpg", alt="USER NAME")
         div.profile-tickets-data
             p
+                span.ticket-project Taiga
                 span.ticket-type Story
                 span.ticket-status UX
-            h1 
+            h2 
                 span.ticket-id #322
-                span.ticket-title Review social network links in user profile
-                span.ticket-project Taiga
+                a.ticket-title(href="#", title="US_NAME") Review social network links in user profile
         div.profile-tickets-track
             span.profile-project-likers 
                 // include ../../../svg/like.svg
