@@ -30,7 +30,7 @@ class WatchButtonService extends taiga.Service
                     watchers = watchers.filterNot (watcher) -> watcher == userId
 
                 return project.merge({
-                    is_watched: true,
+                    is_watched: is_watched,
                     watchers: watchers
                     notify_level: notifyLevel
                 })

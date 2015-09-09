@@ -12,10 +12,10 @@ class LikeButtonService extends taiga.Service
 
     _updateProjects: (projectId, is_liked) ->
         projectIndex = @._getProjectIndex(projectId)
-
         projects = @currentUserService.projects
             .get('all')
             .update projectIndex, (project) ->
+
                 likes = project.get("likes")
 
                 if is_liked then likes++ else likes--

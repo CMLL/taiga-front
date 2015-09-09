@@ -11,12 +11,12 @@ class WatchButtonController
         @.showWatchOptions = !@.showWatchOptions
 
     watch: (notifyLevel) ->
-        @watchButtonService.watch(@.project.get('id'), notifyLevel)
+        return @watchButtonService.watch(@.project.get('id'), notifyLevel)
             .catch () => @confirm.notify("error")
             .finally () => @.showWatchOptions = false
 
     unwatch: ->
-        @watchButtonService.unwatch(@.project.get('id'))
+        return @watchButtonService.unwatch(@.project.get('id'))
             .catch () => @confirm.notify("error")
             .finally () => @.showWatchOptions = false
 
