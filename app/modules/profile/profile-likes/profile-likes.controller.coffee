@@ -1,10 +1,9 @@
 class ProfileLikesController
     @.$inject = [
         "tgUserService",
-        "tgCurrentUserService"
     ]
 
-    constructor: (@userService, @currentUserService) ->
+    constructor: (@userService) ->
 
     loadLikes: () ->
         @userService.getLikes(@.user.get("id"))
