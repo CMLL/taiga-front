@@ -19,7 +19,7 @@ Resource = (urlsService, http, paginateResponseService) ->
                 return Immutable.fromJS(result.data)
 
     service.getStats = (userId) ->
-        url = urlsService.resolve("stats", userId)
+        url = urlsService.resolve("user-stats", userId)
 
         httpOptions = {
             headers: {
@@ -32,7 +32,7 @@ Resource = (urlsService, http, paginateResponseService) ->
                 return Immutable.fromJS(result.data)
 
     service.getContacts = (userId) ->
-        url = urlsService.resolve("contacts", userId)
+        url = urlsService.resolve("user-contacts", userId)
 
         httpOptions = {
             headers: {
@@ -41,6 +41,28 @@ Resource = (urlsService, http, paginateResponseService) ->
         }
 
         return http.get(url, {}, httpOptions)
+            .then (result) ->
+                return Immutable.fromJS(result.data)
+
+    service.getLikes = (userId, objectType, textQuery, pageNumber) ->
+        url = urlsService.resolve("user-likes", userId)
+
+        params = {action: "vote"}
+        params.type = objectType if objectType?
+        params.q = textQuery if textQuery?
+
+        return http.get(url, params)
+            .then (result) ->
+                return Immutable.fromJS(result.data)
+
+    service.getWatched = (userId, page, type, q) ->
+        url = urlsService.resolve("user-watched", userId)
+
+        params = {action: "watch"}
+        params.type = objectType if objectType?
+        params.q = textQuery if textQuery?
+
+        return http.get(url, params)
             .then (result) ->
                 return Immutable.fromJS(result.data)
 

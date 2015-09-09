@@ -6,43 +6,92 @@ section.profile-likes
         div.filters
             a.active(href="", title="All") All
             a(href="", title="All") Projects
-            a(href="", title="All") Stories
-            a(href="", title="All") Tasks
-            a(href="", title="All") Issues
-            
-    div.profile-project-like
-        div.profile-project-data
-            h2
-                a(href="", title="Visit PROJECT NAME") Project title
-                span.private
-            p Project description
-        div.profile-project-track
-            span.profile-project-likers 
-                // include ../../../svg/like.svg
-                span.icon-star-fill
-                span 12
-            span.profile-project-watchers
-                span.icon-open-eye
-                // include ../../../svg/watch.svg
-                span 12
-            
-    div.profile-ticket-like
-        a.profile-tickets-avatar(href="", title="Go to USER NAME profile")
-            img(src="https://s3.amazonaws.com/uifaces/faces/twitter/thejacklonergan/128.jpg", alt="USER NAME")
-        div.profile-tickets-data
-            p
-                span.ticket-project Taiga
-                span.ticket-type Story
-                span.ticket-status UX
-            h2 
-                span.ticket-id #322
-                a.ticket-title(href="#", title="US_NAME") Review social network links in user profile
-        div.profile-tickets-track
-            span.profile-project-likers 
-                // include ../../../svg/like.svg
-                span.icon-star-fill
-                span 12
-            span.profile-project-watchers
-                span.icon-open-eye
-                // include ../../../svg/watch.svg
-                span 12
+            a(href="", title="Stories") Stories
+            a(href="", title="Tasks") Tasks
+            a(href="", title="Issues") Issues
+
+    div(ng-if="vm.likes === undefined")
+         div.spin
+             img(src="/svg/spinner-circle.svg", alt="Loading...")
+
+    div(tg-repeat="obj in vm.likes track by $index" ng-switch="obj.get('type')")
+        //- TODO
+        //-      @Xaviju:
+        //-        - Show colorized tags
+        //-        - Show vote and watchers with oder color if is active
+        //-      @Alex:
+        //-        - Show project description
+        //-        - Show project tag colors
+        //-        - Shoe status colors
+
+        //- type == 'project'
+        div.profile-project-like(ng-switch-when="project")
+            div.profile-project-data
+                h2
+                    a(href="#", tg-nav="project:project=obj.get('project_slug')",
+                      title="Visit PROJECT NAME") {{ ::obj.get('project_name') }}
+                    span.private(ng-if="::obj.get('project_is_private')")
+                //p {{ ::obj.get('project_description') }}
+                p Project description here.
+
+            //div.profile-project-tags.tags-container(ng-if="::obj.get('tags').size")
+            //    span.tag(tg-repeat="tag in ::obj.get('tags')",
+            //             ng-style="::{'border-left: '5px solid ' + tag.get('color') + ';'")
+            //        span.tag-name {{::tag.get('name')}}
+
+            div.profile-project-track
+                span.profile-project-likers(ng-class="{'active': obj.get('is_voted')}")
+                    // include ../../../svg/like.svg
+                    span.icon-star-fill
+                    span {{ ::obj.get('total_votes') }}
+
+                span.profile-project-watchers(ng-class="{'active': obj.get('is_watched')}")
+                    // include ../../../svg/watch.svg
+                    span.icon-open-eye
+                    span {{ ::obj.get('total_watchers') }}
+
+        //- type == 'user story' / 'tasks' / 'issue'
+        div.profile-ticket-like(ng-switch-default)
+            a.profile-tickets-avatar(href="", ng-if="::obj.get('assigned_to')",
+                                     tg-nav="user-profile:username=obj.get('assigned_to_username')",
+                                     title="{{ ::obj.get('assigned_to_full_name') }}")
+                img(ng-src="{{ ::obj.get('assigned_to_photo') }}",
+                    alt="{{ ::obj.get('assigned_to_full_name') }}")
+
+            a.profile-tickets-avatar(href="", ng-if="::!obj.get('assigned_to')",
+                                     title="UNASSIGNED")
+                img(src="/images/unnamed.png", alt="UNASSIGNED")
+
+            div.profile-tickets-data
+                p
+                    span.ticket-project {{:: obj.get('project_name') }}
+                    span.ticket-type(ng-if="::obj.get('type') === 'userstory'") User Story
+                    span.ticket-type(ng-if="::obj.get('type') === 'task'") Task
+                    span.ticket-type(ng-if="::obj.get('type') === 'issue'") Issue
+                    span.ticket-status(ng-style="::{'color': obj.get('status_color')}")
+                        {{:: obj.get('status') }}
+                h2
+                    span.ticket-id(tg-bo-ref="obj.get('ref')")
+                    a.ticket-title(href="#", ng-if="::obj.get('type') === 'userstory'",
+                                   tg-nav="project-userstories-detail:ref=obj.get('ref')",
+                                   title="{{ ::obj.get('subject') }}")
+                        {{ ::obj.get('subject') }}
+                    a.ticket-title(href="#", ng-if="::obj.get('type') === 'task'",
+                                   tg-nav="project-tasks-detail:ref=obj.get('ref')",
+                                   title="{{ ::obj.get('subject') }}")
+                        {{ ::obj.get('subject') }}
+                    a.ticket-title(href="#", ng-if="::obj.get('type') === 'issue'",
+                                   tg-nav="project-issues-detail:ref=obj.get('ref')",
+                                   title="{{ ::obj.get('subject') }}")
+                        {{ ::obj.get('subject') }}
+
+            div.profile-tickets-track
+                span.profile-project-likers(ng-class="{'active': obj.get('is_voted')}")
+                    // include ../../../svg/like.svg
+                    span.icon-star-fill
+                    span {{ ::obj.get('total_votes') }}
+
+                span.profile-project-watchers(ng-class="{'active': obj.get('is_watched')}")
+                    // include ../../../svg/watch.svg
+                    span.icon-open-eye
+                    span {{ ::obj.get('total_watchers') }}

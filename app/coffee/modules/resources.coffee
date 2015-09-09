@@ -37,8 +37,10 @@ urls = {
     "users-change-password": "/users/change_password"
     "users-change-email": "/users/change_email"
     "users-cancel-account": "/users/cancel"
-    "contacts": "/users/%s/contacts"
-    "stats": "/users/%s/stats"
+    "user-stats": "/users/%s/stats"
+    "user-contacts": "/users/%s/contacts"
+    "user-likes": "/users/%s/favourites"
+    "user-watched": "/users/%s/favourites"
 
     # User - Notification
     "permissions": "/permissions"
