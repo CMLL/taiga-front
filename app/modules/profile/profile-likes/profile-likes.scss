@@ -89,6 +89,9 @@
     p {
         @extend %light;
     }
+    .profile-project-tags {
+        margin: .5rem 0;
+    }
 }
 
 .profile-ticket-like {
