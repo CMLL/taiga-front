@@ -44,27 +44,31 @@ Resource = (urlsService, http, paginateResponseService) ->
             .then (result) ->
                 return Immutable.fromJS(result.data)
 
-    service.getLikes = (userId, objectType, textQuery, pageNumber) ->
+    service.getLikes = (userId, page, type, q) ->
         url = urlsService.resolve("user-likes", userId)
 
         params = {action: "vote"}
-        params.type = objectType if objectType?
-        params.q = textQuery if textQuery?
+        params.page = page if page?
+        params.type = type if type?
+        params.q = q if q?
 
         return http.get(url, params)
             .then (result) ->
-                return Immutable.fromJS(result.data)
+                result = Immutable.fromJS(result)
+                return paginateResponseService(result)
 
     service.getWatched = (userId, page, type, q) ->
         url = urlsService.resolve("user-watched", userId)
 
         params = {action: "watch"}
-        params.type = objectType if objectType?
-        params.q = textQuery if textQuery?
+        params.page = page if page?
+        params.type = type if type?
+        params.q = q if q?
 
         return http.get(url, params)
             .then (result) ->
-                return Immutable.fromJS(result.data)
+                result = Immutable.fromJS(result)
+                return paginateResponseService(result)
 
     service.getProfileTimeline = (userId, page) ->
         params = {
