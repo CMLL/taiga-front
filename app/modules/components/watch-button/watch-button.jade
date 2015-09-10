@@ -34,14 +34,6 @@ ul.watch-options(ng-class="{'hidden': !vm.showWatchOptions}")
             span(translate="PROJECT.WATCH_BUTTON.OPTIONS.NOTIFY_INVOLVED")
             span.watch-check(ng-if="vm.project.get('is_watched') && vm.project.get('notify_level') == 1")
                 include ../../../svg/check.svg
-    li
-        a(href="",
-          title="{{ 'PROJECT.WATCH_BUTTON.OPTIONS.NOTIFY_NONE_TITLE' | translate }}",
-          ng-click="vm.watch(3)",
-          ng-class="{'active': vm.project.get('is_watched') && vm.project.get('notify_level') == 3}")
-            span(translate="PROJECT.WATCH_BUTTON.OPTIONS.NOTIFY_NONE")
-            span.watch-check(ng-if="vm.project.get('is_watched') && vm.project.get('notify_level') == 3")
-                include ../../../svg/check.svg
 
     li(ng-if="vm.project.get('is_watched')")
         a(href="",
