@@ -16,24 +16,25 @@ div.profile-ticket-like
             span.ticket-type(ng-if="::vm.item.get('type') === 'task'", translate="COMMON.TASK")
             span.ticket-type(ng-if="::vm.item.get('type') === 'issue'", translate="COMMON.ISSUE")
             span.ticket-status(ng-style="::{'color': vm.item.get('status_color')}")
-                {{:: vm.item.get('status') }}
+                | {{:: vm.item.get('status') }}
         h2
             span.ticket-id(tg-bo-ref="vm.item.get('ref')")
             a.ticket-title(href="#", ng-if="::vm.item.get('type') === 'userstory'",
-                           tg-nav="project-userstories-detail:ref=vm.item.get('ref')",
-                           title="{{ ::vm.item.get('subject') }}")
-                {{ ::vm.item.get('subject') }}
+                    tg-nav="project-userstories-detail:project=vm.item.get('project_slug'),ref=vm.item.get('ref')",
+                    title="#{{ ::vm.item.get('ref') }} {{ ::vm.item.get('subject') }}")
+                | {{ ::vm.item.get('subject') }}
             a.ticket-title(href="#", ng-if="::vm.item.get('type') === 'task'",
-                           tg-nav="project-tasks-detail:ref=vm.item.get('ref')",
-                           title="{{ ::vm.item.get('subject') }}")
-                {{ ::vm.item.get('subject') }}
+                    tg-nav="project-tasks-detail:project=vm.item.get('project_slug'),ref=vm.item.get('ref')",
+                    title="#{{ ::vm.item.get('ref') }} {{ ::vm.item.get('subject') }}")
+                | {{ ::vm.item.get('subject') }}
             a.ticket-title(href="#", ng-if="::vm.item.get('type') === 'issue'",
-                           tg-nav="project-issues-detail:ref=vm.item.get('ref')",
-                           title="{{ ::vm.item.get('subject') }}")
-                {{ ::vm.item.get('subject') }}
+                    tg-nav="project-issues-detail:project=vm.item.get('project_slug'),ref=vm.item.get('ref')",
+                    title="#{{ ::vm.item.get('ref') }} {{ ::vm.item.get('subject') }}")
+                | {{ ::vm.item.get('subject') }}
 
     div.profile-tickets-track
         span.profile-project-likers(ng-class="{'active': vm.item.get('is_voted')}")
+                title="{{ 'LIKES_COUNTER.TITLE'|translate:'{total:vm.item.get(\"total_votes\")}' }}")
             // include ../../../svg/like.svg
             span.icon-star-fill
             span {{ ::vm.item.get('total_votes') }}
