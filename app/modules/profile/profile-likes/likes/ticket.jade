@@ -34,11 +34,11 @@ div.profile-ticket-like
 
     div.profile-tickets-track
         span.profile-project-likers(ng-class="{'active': vm.item.get('is_voted')}", title="{{ 'LIKES_COUNTER.TITLE'|translate:'{total:vm.item.get(\"total_votes\")}' }}")
-            // include ../../../svg/like.svg
-            span.icon-star-fill
+            span.icon
+                include ../../../../svg/like.svg
             span {{ ::vm.item.get('total_votes') }}
 
         span.profile-project-watchers(ng-class="{'active': vm.item.get('is_watched')}")
-            // include ../../../svg/watch.svg
-            span.icon-open-eye
+            span.icon
+                include ../../../../svg/watch.svg
             span {{ ::vm.item.get('total_watchers') }}

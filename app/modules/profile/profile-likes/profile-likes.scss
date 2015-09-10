@@ -42,9 +42,24 @@
         @extend %small;
         margin-bottom: 0;
     }
+    .profile-tickets-track {
+        @extend %small;
+        color: $gray-light;
+        flex-basis: 6rem;
+        margin-left: auto;
+        text-align: right;
+    }
     .profile-project-likers {
         margin-right: .5rem;
         @warn 'This should be updated with an SVG when watchers branch is merged';
+    }
+    .icon {
+        svg {
+            max-width: 1rem;
+        }
+        path {
+            fill: currentcolor;
+        }
     }
 }
 
@@ -96,8 +111,5 @@
     .ticket-id {
         color: $gray-light;
         margin-right: .3rem;
-    }
-    .profile-tickets-track {
-        margin-left: auto;
     }
 }
