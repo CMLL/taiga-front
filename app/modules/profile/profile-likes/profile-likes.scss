@@ -15,7 +15,14 @@
         }
         input {
             border: 0;
+            border-bottom: 1px solid transparent;
             flex: 1;
+            margin-right: 1rem;
+            &:focus {
+                border-bottom: 1px solid $gray-light;
+                outline: none;
+                transition: border-bottom .3s ease-in;
+            }
         }
     }
     .filters {
