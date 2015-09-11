@@ -641,8 +641,9 @@
             "REPORT": "Report Abuse",
             "ACTIVITY_TAB": "Activity Tab",
             "PROJECTS_TAB": "Projects Tab",
+            "LIKES_TAB": "Likes Tab",
+            "WATCHED_TAB": "Watched Tab",
             "CONTACTS_TAB": "Contacts Tab",
-            "FAVORITES_TAB": "Favorites Tab",
             "CONTACTS_EMPTY": "{{username}} doesn't have contacts yet",
             "CURRENT_USER_CONTACTS_EMPTY": "You don't have contacts yet",
             "CURRENT_USER_CONTACTS_EMPTY_EXPLAIN": "The people with whom you work at Taiga will be your contacts automatically",
@@ -652,6 +653,21 @@
             "TITLE": "Your profile",
             "DESCRIPTION": "People can see everything you do and what are you working on. Add a nice bio to give an enhanced version of your information.",
             "ADD_INFO": "Edit your bio"
+        },
+        "PROFILE_FAVS": {
+            "FILTER_INPUT_PLACEHOLDER": "Type something...",
+            "FILTER_TYPE_ALL": "All",
+            "FILTER_TYPE_ALL_TITLE": "Show all",
+            "FILTER_TYPE_PROJECTS": "Projects",
+            "FILTER_TYPE_PROJECT_TITLES": "Show only projects",
+            "FILTER_TYPE_USER_STORIES": "Stories",
+            "FILTER_TYPE_USER_STORIES_TITLES": "Show only user stories",
+            "FILTER_TYPE_TASKS": "Taks",
+            "FILTER_TYPE_TASK_TITLES": "Show only taks",
+            "FILTER_TYPE_ISSUES": "Issues",
+            "FILTER_TYPE_ISSUES_TITLE": "Show only issues",
+            "NO_RESULTS_TEXT1": "It looks like nothing was found.",
+            "NO_RESULTS_TEXT2": "Maybe try with another criterials and search again."
         }
     },
     "PROJECT": {

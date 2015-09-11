@@ -1,9 +1,12 @@
 taiga = @.taiga
+bindMethods = taiga.bindMethods
+
 
 class UserService extends taiga.Service
     @.$inject = ["tgResources"]
 
     constructor: (@rs) ->
+        bindMethods(@)
 
     getUserByUserName: (username) ->
         return @rs.users.getUserByUsername(username)

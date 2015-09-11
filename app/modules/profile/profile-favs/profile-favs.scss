@@ -38,7 +38,7 @@
     }
 }
 
-%profile-likes {
+%profile-favs {
     border-bottom: 1px solid $whitish;
     display: flex;
     padding: 1rem;
@@ -81,9 +81,9 @@
     }
 }
 
-.profile-project-like {
+.profile-project-fav {
     @warn 'merge this styles with project-list-single because its the same layout';
-    @extend %profile-likes;
+    @extend %profile-favs;
     justify-content: space-between;
     h2 {
         @extend %large;
@@ -101,8 +101,8 @@
     }
 }
 
-.profile-ticket-like {
-    @extend %profile-likes;
+.profile-ticket-fav {
+    @extend %profile-favs;
     @warn 'merge this styles with working-on duty-single because its the same layout';
     .profile-tickets-avatar {
         flex-basis: 3rem;

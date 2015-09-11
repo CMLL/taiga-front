@@ -1,20 +1,20 @@
-LikeItemDirective = ->
+FavItemDirective = ->
     link = (scope, el, attrs, ctrl) ->
         scope.vm = {item: scope.item}
 
     templateUrl = (el, attrs) ->
         if attrs.itemType == "project"
-            return "profile/profile-likes/likes/project.html"
+            return "profile/profile-favs/items/project.html"
         else # if attr.itemType in ["userstory", "task", "issue"]
-            return "profile/profile-likes/likes/ticket.html"
+            return "profile/profile-favs/items/ticket.html"
 
     return {
         scope: {
-            "item": "=tgLikeItem"
+            "item": "=tgFavItem"
         }
         link: link
         templateUrl: templateUrl
     }
 
 
-angular.module("taigaProfile").directive("tgLikeItem", LikeItemDirective)
+angular.module("taigaProfile").directive("tgFavItem", FavItemDirective)
