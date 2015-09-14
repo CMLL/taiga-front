@@ -32,19 +32,6 @@ describe "UserService", ->
         _mocks()
         _inject()
 
-    it "get user contacts", () ->
-        userId = 2
-
-        contacts = [
-            {id: 1},
-            {id: 2},
-            {id: 3}
-        ]
-
-        mocks.resources.users.getContacts.withArgs(userId).returns(true)
-
-        expect(userService.getContacts(userId)).to.be.true
-
     it "attach user contacts to projects", (done) ->
         userId = 2
 
@@ -84,6 +71,52 @@ describe "UserService", ->
 
         userService.getContacts(userId).then (_contacts_) ->
             expect(_contacts_).to.be.eql(contacts)
+            done()
+
+        $rootScope.$apply()
+
+    it "get user likes", (done) ->
+        userId = 2
+        pageNumber = 1
+        objectType = null
+        textQuery = null
+
+        likes = [
+            {id: 1},
+            {id: 2},
+            {id: 3}
+        ]
+
+        mocks.resources.users.getLikes = sinon.stub()
+        mocks.resources.users.getLikes.withArgs(userId, pageNumber, objectType, textQuery)
+                                        .promise()
+                                        .resolve(likes)
+
+        userService.getLikes(userId, pageNumber, objectType, textQuery).then (_likes_) ->
+            expect(_likes_).to.be.eql(likes)
+            done()
+
+        $rootScope.$apply()
+
+    it "get user watched", (done) ->
+        userId = 2
+        pageNumber = 1
+        objectType = null
+        textQuery = null
+
+        watched = [
+            {id: 1},
+            {id: 2},
+            {id: 3}
+        ]
+
+        mocks.resources.users.getWatched = sinon.stub()
+        mocks.resources.users.getWatched.withArgs(userId, pageNumber, objectType, textQuery)
+                                        .promise()
+                                        .resolve(watched)
+
+        userService.getWatched(userId, pageNumber, objectType, textQuery).then (_watched_) ->
+            expect(_watched_).to.be.eql(watched)
             done()
 
         $rootScope.$apply()
