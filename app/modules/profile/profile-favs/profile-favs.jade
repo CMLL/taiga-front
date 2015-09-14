@@ -4,7 +4,7 @@ section.profile-favs
             span.icon-search
             input(type="text",
                   ng-model="vm.q",
-                  ng-keyup="vm.filterByTextQuery()",
+                  ng-change="vm.filterByTextQuery()",
                   placeholder="{{ 'USER.PROFILE_FAVS.FILTER_INPUT_PLACEHOLDER'|translate }}")
 
         div.filters
@@ -43,6 +43,6 @@ section.profile-favs
         div.spin
             img(src="/svg/spinner-circle.svg", alt="{{ 'COMMON.LOADING'|translate }}")
 
-    div.empty(ng-if="vm.hasNoResults")
+    div.empty(ng-if="vm.hasNoResults && !vm.isLoading")
         span.title(translate="USER.PROFILE_FAVS.NO_RESULTS_TEXT1")
         span(translate="USER.PROFILE_FAVS.NO_RESULTS_TEXT2")
