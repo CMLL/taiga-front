@@ -35,6 +35,11 @@
         .track-inner {
             background: rgba($primary-light, .2);
         }
+        .track-icon {
+            path {
+                fill: $primary;
+            }
+        }
     }
     &.watch-container {
         margin-right: 1rem;
@@ -68,19 +73,6 @@
 
 .like-button {
     margin-right: .75rem;
-    &.active {
-        path {
-            fill: $red-light;
-        }
-    }
-}
-
-.watch-button {
-    &.active {
-        path {
-            fill: $blackish;
-        }
-    }
 }
 
 .watch-options {

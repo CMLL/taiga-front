@@ -666,8 +666,8 @@
             "FILTER_TYPE_TASK_TITLES": "Show only taks",
             "FILTER_TYPE_ISSUES": "Issues",
             "FILTER_TYPE_ISSUES_TITLE": "Show only issues",
-            "NO_RESULTS_TEXT1": "It looks like nothing was found.",
-            "NO_RESULTS_TEXT2": "Maybe try with another criterials and search again."
+            "NO_RESULTS_TEXT1": "It looks like nothing was found",
+            "NO_RESULTS_TEXT2": "Try again with another search criteria."
         }
     },
     "PROJECT": {
