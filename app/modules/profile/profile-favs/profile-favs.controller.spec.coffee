@@ -33,8 +33,6 @@ describe "ProfileLikes", ->
     it "load paginated items", (done) ->
         $scope = $rootScope.$new()
         ctrl = $controller("ProfileLikes", $scope, {user: user})
-        ctrl._enableLoadingSpinner = sinon.stub()
-        ctrl._disableLoadingSpinner = sinon.stub()
 
         items1 = Immutable.fromJS({
             data: [
@@ -57,42 +55,29 @@ describe "ProfileLikes", ->
 
         expect(ctrl.items.size).to.be.equal(0)
         expect(ctrl.hasNoMorePages).to.be.false
-        expect(ctrl._page).to.be.equal(1)
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
-        expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(0)
 
         ctrl.loadItems().then () =>
             expectItems = items1.get("data")
 
-            expect(ctrl.items.size).to.be.equal(3)
             expect(ctrl.items.equals(expectItems)).to.be.true
             expect(ctrl.hasNoMorePages).to.be.true
-            expect(ctrl._page).to.be.equal(2)
             expect(ctrl.type).to.be.null
             expect(ctrl.q).to.be.null
-            expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(1)
 
             ctrl.loadItems().then () =>
                 expectItems = expectItems.concat(items2.get("data"))
 
-                expect(ctrl.items.size).to.be.equal(5)
                 expect(ctrl.items.equals(expectItems)).to.be.true
                 expect(ctrl.hasNoMorePages).to.be.false
-                expect(ctrl._page).to.be.equal(2)
                 expect(ctrl.type).to.be.null
                 expect(ctrl.q).to.be.null
-                expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(2)
-                expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(2)
                 done()
 
     it "filter items by text query", (done) ->
         $scope = $rootScope.$new()
         ctrl = $controller("ProfileLikes", $scope, {user: user})
-        ctrl._enableLoadingSpinner = sinon.stub()
-        ctrl._disableLoadingSpinner = sinon.stub()
 
         textQuery = "_test_"
 
@@ -109,33 +94,23 @@ describe "ProfileLikes", ->
 
         expect(ctrl.items.size).to.be.equal(0)
         expect(ctrl.hasNoMorePages).to.be.false
-        expect(ctrl._page).to.be.equal(1)
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
-        expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(0)
 
         ctrl.q = textQuery
 
         ctrl.loadItems().then () =>
             expectItems = items.get("data")
 
-            expect(ctrl.items.size).to.be.equal(3)
             expect(ctrl.items.equals(expectItems)).to.be.true
             expect(ctrl.hasNoMorePages).to.be.true
-            expect(ctrl._page).to.be.equal(2)
             expect(ctrl.type).to.be.null
             expect(ctrl.q).to.be.equal(textQuery)
-            expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(1)
             done()
 
     it "show only items of projects", (done) ->
         $scope = $rootScope.$new()
         ctrl = $controller("ProfileLikes", $scope, {user: user})
-        ctrl._enableLoadingSpinner = sinon.stub()
-        ctrl._disableLoadingSpinner = sinon.stub()
-        ctrl._resetList = sinon.stub()
 
         type = "project"
 
@@ -152,33 +127,21 @@ describe "ProfileLikes", ->
 
         expect(ctrl.items.size).to.be.equal(0)
         expect(ctrl.hasNoMorePages).to.be.false
-        expect(ctrl._page).to.be.equal(1)
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
-        expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._resetList.callCount).to.be.equal(0)
 
         ctrl.showProjectsOnly().then () =>
             expectItems = items.get("data")
 
-            expect(ctrl.items.size).to.be.equal(3)
             expect(ctrl.items.equals(expectItems)).to.be.true
             expect(ctrl.hasNoMorePages).to.be.true
-            expect(ctrl._page).to.be.equal(2)
             expect(ctrl.type).to.be.type
             expect(ctrl.q).to.be.null
-            expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._resetList.callCount).to.be.equal(1)
             done()
 
     it "show only items of user stories", (done) ->
         $scope = $rootScope.$new()
         ctrl = $controller("ProfileLikes", $scope, {user: user})
-        ctrl._enableLoadingSpinner = sinon.stub()
-        ctrl._disableLoadingSpinner = sinon.stub()
-        ctrl._resetList = sinon.stub()
 
         type = "userstory"
 
@@ -195,33 +158,21 @@ describe "ProfileLikes", ->
 
         expect(ctrl.items.size).to.be.equal(0)
         expect(ctrl.hasNoMorePages).to.be.false
-        expect(ctrl._page).to.be.equal(1)
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
-        expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._resetList.callCount).to.be.equal(0)
 
         ctrl.showUserStoriesOnly().then () =>
             expectItems = items.get("data")
 
-            expect(ctrl.items.size).to.be.equal(3)
             expect(ctrl.items.equals(expectItems)).to.be.true
             expect(ctrl.hasNoMorePages).to.be.true
-            expect(ctrl._page).to.be.equal(2)
             expect(ctrl.type).to.be.type
             expect(ctrl.q).to.be.null
-            expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._resetList.callCount).to.be.equal(1)
             done()
 
     it "show only items of tasks", (done) ->
         $scope = $rootScope.$new()
         ctrl = $controller("ProfileLikes", $scope, {user: user})
-        ctrl._enableLoadingSpinner = sinon.stub()
-        ctrl._disableLoadingSpinner = sinon.stub()
-        ctrl._resetList = sinon.stub()
 
         type = "task"
 
@@ -238,33 +189,21 @@ describe "ProfileLikes", ->
 
         expect(ctrl.items.size).to.be.equal(0)
         expect(ctrl.hasNoMorePages).to.be.false
-        expect(ctrl._page).to.be.equal(1)
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
-        expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._resetList.callCount).to.be.equal(0)
 
         ctrl.showTasksOnly().then () =>
             expectItems = items.get("data")
 
-            expect(ctrl.items.size).to.be.equal(3)
             expect(ctrl.items.equals(expectItems)).to.be.true
             expect(ctrl.hasNoMorePages).to.be.true
-            expect(ctrl._page).to.be.equal(2)
             expect(ctrl.type).to.be.type
             expect(ctrl.q).to.be.null
-            expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._resetList.callCount).to.be.equal(1)
             done()
 
     it "show only items of issues", (done) ->
         $scope = $rootScope.$new()
         ctrl = $controller("ProfileLikes", $scope, {user: user})
-        ctrl._enableLoadingSpinner = sinon.stub()
-        ctrl._disableLoadingSpinner = sinon.stub()
-        ctrl._resetList = sinon.stub()
 
         type = "issue"
 
@@ -281,25 +220,60 @@ describe "ProfileLikes", ->
 
         expect(ctrl.items.size).to.be.equal(0)
         expect(ctrl.hasNoMorePages).to.be.false
-        expect(ctrl._page).to.be.equal(1)
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
-        expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._resetList.callCount).to.be.equal(0)
 
         ctrl.showIssuesOnly().then () =>
             expectItems = items.get("data")
 
-            expect(ctrl.items.size).to.be.equal(3)
             expect(ctrl.items.equals(expectItems)).to.be.true
             expect(ctrl.hasNoMorePages).to.be.true
-            expect(ctrl._page).to.be.equal(2)
             expect(ctrl.type).to.be.type
             expect(ctrl.q).to.be.null
-            expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._resetList.callCount).to.be.equal(1)
+            done()
+
+    it "shou loading spinner during the call to the api", (done) ->
+        $scope = $rootScope.$new()
+        ctrl = $controller("ProfileLikes", $scope, {user: user})
+
+        items = Immutable.fromJS({
+            data: [
+                {id: 1},
+                {id: 2},
+                {id: 3}
+            ],
+            next: true
+        })
+
+        mockPromise = mocks.userServices.getLikes.withArgs(user.get("id"), 1, null, null).promise()
+
+        expect(ctrl.isLoading).to.be.undefined
+
+        promise = ctrl.loadItems()
+
+        expect(ctrl.isLoading).to.be.true
+
+        mockPromise.resolve(items)
+
+        promise.then () =>
+            expect(ctrl.isLoading).to.be.false
+            done()
+
+    it "shou no results placeholder", (done) ->
+        $scope = $rootScope.$new()
+        ctrl = $controller("ProfileLikes", $scope, {user: user})
+
+        items = Immutable.fromJS({
+            data: [],
+            next: false
+        })
+
+        mocks.userServices.getLikes.withArgs(user.get("id"), 1, null, null).promise().resolve(items)
+
+        expect(ctrl.hasNoResults).to.be.undefined
+
+        ctrl.loadItems().then () =>
+            expect(ctrl.hasNoResults).to.be.true
             done()
 
 
@@ -338,8 +312,6 @@ describe "ProfileWatched", ->
     it "load paginated items", (done) ->
         $scope = $rootScope.$new()
         ctrl = $controller("ProfileWatched", $scope, {user: user})
-        ctrl._enableLoadingSpinner = sinon.stub()
-        ctrl._disableLoadingSpinner = sinon.stub()
 
         items1 = Immutable.fromJS({
             data: [
@@ -362,42 +334,29 @@ describe "ProfileWatched", ->
 
         expect(ctrl.items.size).to.be.equal(0)
         expect(ctrl.hasNoMorePages).to.be.false
-        expect(ctrl._page).to.be.equal(1)
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
-        expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(0)
 
         ctrl.loadItems().then () =>
             expectItems = items1.get("data")
 
-            expect(ctrl.items.size).to.be.equal(3)
             expect(ctrl.items.equals(expectItems)).to.be.true
             expect(ctrl.hasNoMorePages).to.be.true
-            expect(ctrl._page).to.be.equal(2)
             expect(ctrl.type).to.be.null
             expect(ctrl.q).to.be.null
-            expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(1)
 
             ctrl.loadItems().then () =>
                 expectItems = expectItems.concat(items2.get("data"))
 
-                expect(ctrl.items.size).to.be.equal(5)
                 expect(ctrl.items.equals(expectItems)).to.be.true
                 expect(ctrl.hasNoMorePages).to.be.false
-                expect(ctrl._page).to.be.equal(2)
                 expect(ctrl.type).to.be.null
                 expect(ctrl.q).to.be.null
-                expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(2)
-                expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(2)
                 done()
 
     it "filter items by text query", (done) ->
         $scope = $rootScope.$new()
         ctrl = $controller("ProfileWatched", $scope, {user: user})
-        ctrl._enableLoadingSpinner = sinon.stub()
-        ctrl._disableLoadingSpinner = sinon.stub()
 
         textQuery = "_test_"
 
@@ -414,33 +373,23 @@ describe "ProfileWatched", ->
 
         expect(ctrl.items.size).to.be.equal(0)
         expect(ctrl.hasNoMorePages).to.be.false
-        expect(ctrl._page).to.be.equal(1)
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
-        expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(0)
 
         ctrl.q = textQuery
 
         ctrl.loadItems().then () =>
             expectItems = items.get("data")
 
-            expect(ctrl.items.size).to.be.equal(3)
             expect(ctrl.items.equals(expectItems)).to.be.true
             expect(ctrl.hasNoMorePages).to.be.true
-            expect(ctrl._page).to.be.equal(2)
             expect(ctrl.type).to.be.null
             expect(ctrl.q).to.be.equal(textQuery)
-            expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(1)
             done()
 
     it "show only items of projects", (done) ->
         $scope = $rootScope.$new()
         ctrl = $controller("ProfileWatched", $scope, {user: user})
-        ctrl._enableLoadingSpinner = sinon.stub()
-        ctrl._disableLoadingSpinner = sinon.stub()
-        ctrl._resetList = sinon.stub()
 
         type = "project"
 
@@ -457,33 +406,21 @@ describe "ProfileWatched", ->
 
         expect(ctrl.items.size).to.be.equal(0)
         expect(ctrl.hasNoMorePages).to.be.false
-        expect(ctrl._page).to.be.equal(1)
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
-        expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._resetList.callCount).to.be.equal(0)
 
         ctrl.showProjectsOnly().then () =>
             expectItems = items.get("data")
 
-            expect(ctrl.items.size).to.be.equal(3)
             expect(ctrl.items.equals(expectItems)).to.be.true
             expect(ctrl.hasNoMorePages).to.be.true
-            expect(ctrl._page).to.be.equal(2)
             expect(ctrl.type).to.be.type
             expect(ctrl.q).to.be.null
-            expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._resetList.callCount).to.be.equal(1)
             done()
 
     it "show only items of user stories", (done) ->
         $scope = $rootScope.$new()
         ctrl = $controller("ProfileWatched", $scope, {user: user})
-        ctrl._enableLoadingSpinner = sinon.stub()
-        ctrl._disableLoadingSpinner = sinon.stub()
-        ctrl._resetList = sinon.stub()
 
         type = "userstory"
 
@@ -500,33 +437,21 @@ describe "ProfileWatched", ->
 
         expect(ctrl.items.size).to.be.equal(0)
         expect(ctrl.hasNoMorePages).to.be.false
-        expect(ctrl._page).to.be.equal(1)
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
-        expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._resetList.callCount).to.be.equal(0)
 
         ctrl.showUserStoriesOnly().then () =>
             expectItems = items.get("data")
 
-            expect(ctrl.items.size).to.be.equal(3)
             expect(ctrl.items.equals(expectItems)).to.be.true
             expect(ctrl.hasNoMorePages).to.be.true
-            expect(ctrl._page).to.be.equal(2)
             expect(ctrl.type).to.be.type
             expect(ctrl.q).to.be.null
-            expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._resetList.callCount).to.be.equal(1)
             done()
 
     it "show only items of tasks", (done) ->
         $scope = $rootScope.$new()
         ctrl = $controller("ProfileWatched", $scope, {user: user})
-        ctrl._enableLoadingSpinner = sinon.stub()
-        ctrl._disableLoadingSpinner = sinon.stub()
-        ctrl._resetList = sinon.stub()
 
         type = "task"
 
@@ -543,33 +468,21 @@ describe "ProfileWatched", ->
 
         expect(ctrl.items.size).to.be.equal(0)
         expect(ctrl.hasNoMorePages).to.be.false
-        expect(ctrl._page).to.be.equal(1)
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
-        expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._resetList.callCount).to.be.equal(0)
 
         ctrl.showTasksOnly().then () =>
             expectItems = items.get("data")
 
-            expect(ctrl.items.size).to.be.equal(3)
             expect(ctrl.items.equals(expectItems)).to.be.true
             expect(ctrl.hasNoMorePages).to.be.true
-            expect(ctrl._page).to.be.equal(2)
             expect(ctrl.type).to.be.type
             expect(ctrl.q).to.be.null
-            expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._resetList.callCount).to.be.equal(1)
             done()
 
     it "show only items of issues", (done) ->
         $scope = $rootScope.$new()
         ctrl = $controller("ProfileWatched", $scope, {user: user})
-        ctrl._enableLoadingSpinner = sinon.stub()
-        ctrl._disableLoadingSpinner = sinon.stub()
-        ctrl._resetList = sinon.stub()
 
         type = "issue"
 
@@ -586,23 +499,58 @@ describe "ProfileWatched", ->
 
         expect(ctrl.items.size).to.be.equal(0)
         expect(ctrl.hasNoMorePages).to.be.false
-        expect(ctrl._page).to.be.equal(1)
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
-        expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(0)
-        expect(ctrl._resetList.callCount).to.be.equal(0)
 
         ctrl.showIssuesOnly().then () =>
             expectItems = items.get("data")
 
-            expect(ctrl.items.size).to.be.equal(3)
             expect(ctrl.items.equals(expectItems)).to.be.true
             expect(ctrl.hasNoMorePages).to.be.true
-            expect(ctrl._page).to.be.equal(2)
             expect(ctrl.type).to.be.type
             expect(ctrl.q).to.be.null
-            expect(ctrl._enableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._disableLoadingSpinner.callCount).to.be.equal(1)
-            expect(ctrl._resetList.callCount).to.be.equal(1)
+            done()
+
+    it "shou loading spinner during the call to the api", (done) ->
+        $scope = $rootScope.$new()
+        ctrl = $controller("ProfileWatched", $scope, {user: user})
+
+        items = Immutable.fromJS({
+            data: [
+                {id: 1},
+                {id: 2},
+                {id: 3}
+            ],
+            next: true
+        })
+
+        mockPromise = mocks.userServices.getWatched.withArgs(user.get("id"), 1, null, null).promise()
+
+        expect(ctrl.isLoading).to.be.undefined
+
+        promise = ctrl.loadItems()
+
+        expect(ctrl.isLoading).to.be.true
+
+        mockPromise.resolve(items)
+
+        promise.then () =>
+            expect(ctrl.isLoading).to.be.false
+            done()
+
+    it "shou no results placeholder", (done) ->
+        $scope = $rootScope.$new()
+        ctrl = $controller("ProfileWatched", $scope, {user: user})
+
+        items = Immutable.fromJS({
+            data: [],
+            next: false
+        })
+
+        mocks.userServices.getWatched.withArgs(user.get("id"), 1, null, null).promise().resolve(items)
+
+        expect(ctrl.hasNoResults).to.be.undefined
+
+        ctrl.loadItems().then () =>
+            expect(ctrl.hasNoResults).to.be.true
             done()

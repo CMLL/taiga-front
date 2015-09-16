@@ -1,7 +1,7 @@
 debounceLeading = @.taiga.debounceLeading
 
 class FavsBaseController
-    constructor: (@userService) ->
+    constructor: ->
         @._init()
         #@._getItems = null # Define in inheritance classes
 
@@ -92,7 +92,7 @@ class ProfileLikesController extends FavsBaseController
     ]
 
     constructor: (@userService) ->
-        super(@userService)
+        super()
         @._getItems = @userService.getLikes
 
 
@@ -110,7 +110,7 @@ class ProfileWatchedController extends FavsBaseController
     ]
 
     constructor: (@userService) ->
-        super(@userService)
+        super()
         @._getItems = @userService.getWatched
 
 
