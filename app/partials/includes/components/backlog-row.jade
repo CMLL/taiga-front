@@ -14,6 +14,7 @@ div.row.us-item-row(ng-repeat="us in userstories track by us.id", tg-bind-scope,
                 a.icon.icon-delete(tg-check-permission="delete_us", href="",
                                    ng-click="ctrl.deleteUserStory(us)", title="{{'COMMON.DELETE' | translate}}")
 
+    div.votes {{ ::us.votes }}
     div.status(tg-us-status="us" on-update="ctrl.updateUserStoryStatus()")
         a.us-status(href="", title="{{'BACKLOG.STATUS_NAME' | translate}}")
             span.us-status-bind

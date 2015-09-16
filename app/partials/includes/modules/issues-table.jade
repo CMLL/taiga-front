@@ -4,6 +4,7 @@ section.issues-table.basic-table(ng-class="{empty: !issues.length}")
         div.level-field(data-fieldname="severity", translate="ISSUES.TABLE.COLUMNS.SEVERITY")
         div.level-field(data-fieldname="priority", translate="ISSUES.TABLE.COLUMNS.PRIORITY")
         div.subject(data-fieldname="subject", translate="ISSUES.TABLE.COLUMNS.SUBJECT")
+        div.votes(data-fieldname="votes_count", translate="ISSUES.TABLE.COLUMNS.VOTES")
         div.issue-field(data-fieldname="status", translate="ISSUES.TABLE.COLUMNS.STATUS")
         div.created-field(data-fieldname="created_date", translate="ISSUES.TABLE.COLUMNS.CREATED")
         div.assigned-field(data-fieldname="assigned_to", translate="ISSUES.TABLE.COLUMNS.ASSIGNED_TO")
@@ -17,6 +18,8 @@ section.issues-table.basic-table(ng-class="{empty: !issues.length}")
               title="#{{ ::issue.ref }} {{ ::issue.subject }}")
                 span(tg-bo-ref="issue.ref")
                 span(ng-bind="issue.subject")
+
+        div.level-field {{ ::issue.votes }}
 
         div.issue-field(tg-issue-status-inline-edition="issue")
             a.issue-status(href="", title="{{'ISSUES.TABLE.TITLE_ACTION_CHANGE_STATUS' | translate}}")
