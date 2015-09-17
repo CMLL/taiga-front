@@ -23,6 +23,7 @@ taiga = @.taiga
 
 mixOf = @.taiga.mixOf
 groupBy = @.taiga.groupBy
+bindMethods = @.taiga.bindMethods
 
 module = angular.module("taigaTasks")
 
@@ -50,6 +51,8 @@ class TaskDetailController extends mixOf(taiga.Controller, taiga.PageMixin)
 
     constructor: (@scope, @rootscope, @repo, @confirm, @rs, @params, @q, @location,
                   @log, @appMetaService, @navUrls, @analytics, @translate) ->
+        bindMethods(@)
+
         @scope.taskRef = @params.taskref
         @scope.sectionName = @translate.instant("TASK.SECTION_NAME")
         @.initializeEventHandlers()
@@ -144,6 +147,28 @@ class TaskDetailController extends mixOf(taiga.Controller, taiga.PageMixin)
         return promise.then (project) =>
             @.fillUsersAndRoles(project.members, project.roles)
             @.loadTask().then(=> @q.all([@.loadSprint(), @.loadUserStory()]))
+
+    ###
+    # Note: This methods (onUpvote() and onDownvote()) are related to tg-vote-button.
+    #       See app/modules/components/vote-button for more info
+    ###
+    onUpvote: ->
+        onSuccess = =>
+            @.loadTask()
+            @rootscope.$broadcast("object:updated")
+        onError = =>
+            @confirm.notify("error")
+
+        return @rs.tasks.upvote(@scope.taskId).then(onSuccess, onError)
+
+    onDownvote: ->
+        onSuccess = =>
+            @.loadTask()
+            @rootscope.$broadcast("object:updated")
+        onError = =>
+            @confirm.notify("error")
+
+        return @rs.tasks.downvote(@scope.taskId).then(onSuccess, onError)
 
 module.controller("TaskDetailController", TaskDetailController)
 

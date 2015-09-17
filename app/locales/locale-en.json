@@ -155,6 +155,12 @@
             "DELETE": "Delete watcher",
             "TITLE_LIGHTBOX_DELETE_WARTCHER": "Delete watcher..."
         },
+        "VOTE_BUTTON": {
+            "UPVOTE": "Upvote",
+            "DOWNVOTE": "Downvote",
+            "BUTTON_TITLE": "Upvote/Downvote this",
+            "COUNTER_TITLE": "Number of votes for this"
+        },
         "CUSTOM_ATTRIBUTES": {
             "CUSTOM_FIELDS": "Custom Fields",
             "SAVE": "Save Custom Field",

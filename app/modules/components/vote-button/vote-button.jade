@@ -1,0 +1,13 @@
+a.track-button.like-button.like-container(href="",
+                             title="{{ 'COMMON.VOTE_BUTTON.BUTTON_TITLE' | translate }}",
+                             ng-click="vm.toggleVote()",
+                             ng-class="{'active': vm.item.is_voted }")
+
+    span.track-inner
+        span.track-icon
+            include ../../../svg/like.svg
+        span(ng-if="!vm.item.is_voted", translate="COMMON.VOTE_BUTTON.UPVOTE")
+        span(ng-if="vm.item.is_voted", translate="COMMON.VOTE_BUTTON.DOWNVOTE")
+
+    span.track-button-counter(title="{{ 'COMMON.VOTE_BUTTON.COUNTER_TITLE' | translate }}")
+        | {{ vm.item.votes }}

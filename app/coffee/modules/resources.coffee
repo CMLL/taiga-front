@@ -89,16 +89,22 @@ urls = {
     "bulk-update-us-sprint-order": "/userstories/bulk_update_sprint_order"
     "bulk-update-us-kanban-order": "/userstories/bulk_update_kanban_order"
     "userstories-filters": "/userstories/filters_data"
+    "userstory-upvote": "/userstories/%s/upvote"
+    "userstory-downvote": "/userstories/%s/downvote"
 
     # Tasks
     "tasks": "/tasks"
     "bulk-create-tasks": "/tasks/bulk_create"
     "bulk-update-task-taskboard-order": "/tasks/bulk_update_taskboard_order"
+    "task-upvote": "/tasks/%s/upvote"
+    "task-downvote": "/tasks/%s/downvote"
 
     # Issues
     "issues": "/issues"
     "bulk-create-issues": "/issues/bulk_create"
     "issues-filters": "/issues/filters_data"
+    "issue-upvote": "/issues/%s/upvote"
+    "issue-downvote": "/issues/%s/downvote"
 
     # Wiki pages
     "wiki": "/wiki"

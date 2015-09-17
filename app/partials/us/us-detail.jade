@@ -64,6 +64,9 @@ div.wrapper(ng-controller="UserStoryDetailController as ctrl",
 
         section.duty-assigned-to(tg-assigned-to, ng-model="us", required-perm="modify_us")
 
+        section.vote
+            tg-vote-button(item="us", on-upvote="ctrl.onUpvote", on-downvote="ctrl.onDownvote")
+
         section.watchers(tg-watchers, ng-model="us", required-perm="modify_us")
 
         section.us-detail-settings
