@@ -12,7 +12,7 @@ class FavsBaseController
 
     _resetList: ->
         @.items = Immutable.List()
-        @.hasNoMorePages = false
+        @.scrollDisabled = false
         @._page = 1
 
     _enableLoadingSpinner: ->
@@ -21,18 +21,25 @@ class FavsBaseController
     _disableLoadingSpinner: ->
         @.isLoading = false
 
-    _checkIfHasMorePages: (hasNext)->
+    _enableScroll : ->
+        @.scrollDisabled = false
+
+    _disableScroll : ->
+        @.scrollDisabled = true
+
+    _checkIfHasMorePages: (hasNext) ->
         if hasNext
-            @.hasNoMorePages = false
             @._page += 1
+            @._enableScroll()
         else
-            @.hasNoMorePages = true
+            @._disableScroll()
 
     _checkIfHasNoResults: ->
         @.hasNoResults = @.items.size == 0
 
     loadItems:  ->
         @._enableLoadingSpinner()
+        @._disableScroll()
 
         @._getItems(@.user.get("id"), @._page, @.type, @.q)
             .then (response) =>
@@ -44,8 +51,6 @@ class FavsBaseController
 
                 return @.items
             .catch =>
-                @._checkIfHasMorePages(false)
-                @._checkIfHasNoResults()
                 @._disableLoadingSpinner()
 
                 return @.items

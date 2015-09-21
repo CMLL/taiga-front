@@ -4,7 +4,7 @@ base = {
         user: "="
         type: "@"
         q: "@"
-        hasNoMorePages: "@"
+        scrollDisabled: "@"
         isLoading: "@"
         hasNoResults: "@"
     }

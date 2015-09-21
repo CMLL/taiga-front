@@ -54,7 +54,7 @@ describe "ProfileLikes", ->
         mocks.userServices.getLikes.withArgs(user.get("id"), 2, null, null).promise().resolve(items2)
 
         expect(ctrl.items.size).to.be.equal(0)
-        expect(ctrl.hasNoMorePages).to.be.false
+        expect(ctrl.scrollDisabled).to.be.false
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
 
@@ -62,7 +62,7 @@ describe "ProfileLikes", ->
             expectItems = items1.get("data")
 
             expect(ctrl.items.equals(expectItems)).to.be.true
-            expect(ctrl.hasNoMorePages).to.be.true
+            expect(ctrl.scrollDisabled).to.be.false
             expect(ctrl.type).to.be.null
             expect(ctrl.q).to.be.null
 
@@ -70,7 +70,7 @@ describe "ProfileLikes", ->
                 expectItems = expectItems.concat(items2.get("data"))
 
                 expect(ctrl.items.equals(expectItems)).to.be.true
-                expect(ctrl.hasNoMorePages).to.be.false
+                expect(ctrl.scrollDisabled).to.be.true
                 expect(ctrl.type).to.be.null
                 expect(ctrl.q).to.be.null
                 done()
@@ -93,7 +93,7 @@ describe "ProfileLikes", ->
         mocks.userServices.getLikes.withArgs(user.get("id"), 1, null, textQuery).promise().resolve(items)
 
         expect(ctrl.items.size).to.be.equal(0)
-        expect(ctrl.hasNoMorePages).to.be.false
+        expect(ctrl.scrollDisabled).to.be.false
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
 
@@ -103,7 +103,7 @@ describe "ProfileLikes", ->
             expectItems = items.get("data")
 
             expect(ctrl.items.equals(expectItems)).to.be.true
-            expect(ctrl.hasNoMorePages).to.be.true
+            expect(ctrl.scrollDisabled).to.be.false
             expect(ctrl.type).to.be.null
             expect(ctrl.q).to.be.equal(textQuery)
             done()
@@ -126,7 +126,7 @@ describe "ProfileLikes", ->
         mocks.userServices.getLikes.withArgs(user.get("id"), 1, type, null).promise().resolve(items)
 
         expect(ctrl.items.size).to.be.equal(0)
-        expect(ctrl.hasNoMorePages).to.be.false
+        expect(ctrl.scrollDisabled).to.be.false
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
 
@@ -134,7 +134,7 @@ describe "ProfileLikes", ->
             expectItems = items.get("data")
 
             expect(ctrl.items.equals(expectItems)).to.be.true
-            expect(ctrl.hasNoMorePages).to.be.true
+            expect(ctrl.scrollDisabled).to.be.false
             expect(ctrl.type).to.be.type
             expect(ctrl.q).to.be.null
             done()
@@ -157,7 +157,7 @@ describe "ProfileLikes", ->
         mocks.userServices.getLikes.withArgs(user.get("id"), 1, type, null).promise().resolve(items)
 
         expect(ctrl.items.size).to.be.equal(0)
-        expect(ctrl.hasNoMorePages).to.be.false
+        expect(ctrl.scrollDisabled).to.be.false
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
 
@@ -165,7 +165,7 @@ describe "ProfileLikes", ->
             expectItems = items.get("data")
 
             expect(ctrl.items.equals(expectItems)).to.be.true
-            expect(ctrl.hasNoMorePages).to.be.true
+            expect(ctrl.scrollDisabled).to.be.false
             expect(ctrl.type).to.be.type
             expect(ctrl.q).to.be.null
             done()
@@ -188,7 +188,7 @@ describe "ProfileLikes", ->
         mocks.userServices.getLikes.withArgs(user.get("id"), 1, type, null).promise().resolve(items)
 
         expect(ctrl.items.size).to.be.equal(0)
-        expect(ctrl.hasNoMorePages).to.be.false
+        expect(ctrl.scrollDisabled).to.be.false
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
 
@@ -196,7 +196,7 @@ describe "ProfileLikes", ->
             expectItems = items.get("data")
 
             expect(ctrl.items.equals(expectItems)).to.be.true
-            expect(ctrl.hasNoMorePages).to.be.true
+            expect(ctrl.scrollDisabled).to.be.false
             expect(ctrl.type).to.be.type
             expect(ctrl.q).to.be.null
             done()
@@ -219,7 +219,7 @@ describe "ProfileLikes", ->
         mocks.userServices.getLikes.withArgs(user.get("id"), 1, type, null).promise().resolve(items)
 
         expect(ctrl.items.size).to.be.equal(0)
-        expect(ctrl.hasNoMorePages).to.be.false
+        expect(ctrl.scrollDisabled).to.be.false
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
 
@@ -227,7 +227,7 @@ describe "ProfileLikes", ->
             expectItems = items.get("data")
 
             expect(ctrl.items.equals(expectItems)).to.be.true
-            expect(ctrl.hasNoMorePages).to.be.true
+            expect(ctrl.scrollDisabled).to.be.false
             expect(ctrl.type).to.be.type
             expect(ctrl.q).to.be.null
             done()
@@ -333,7 +333,7 @@ describe "ProfileWatched", ->
         mocks.userServices.getWatched.withArgs(user.get("id"), 2, null, null).promise().resolve(items2)
 
         expect(ctrl.items.size).to.be.equal(0)
-        expect(ctrl.hasNoMorePages).to.be.false
+        expect(ctrl.scrollDisabled).to.be.false
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
 
@@ -341,7 +341,7 @@ describe "ProfileWatched", ->
             expectItems = items1.get("data")
 
             expect(ctrl.items.equals(expectItems)).to.be.true
-            expect(ctrl.hasNoMorePages).to.be.true
+            expect(ctrl.scrollDisabled).to.be.false
             expect(ctrl.type).to.be.null
             expect(ctrl.q).to.be.null
 
@@ -349,7 +349,7 @@ describe "ProfileWatched", ->
                 expectItems = expectItems.concat(items2.get("data"))
 
                 expect(ctrl.items.equals(expectItems)).to.be.true
-                expect(ctrl.hasNoMorePages).to.be.false
+                expect(ctrl.scrollDisabled).to.be.true
                 expect(ctrl.type).to.be.null
                 expect(ctrl.q).to.be.null
                 done()
@@ -372,7 +372,7 @@ describe "ProfileWatched", ->
         mocks.userServices.getWatched.withArgs(user.get("id"), 1, null, textQuery).promise().resolve(items)
 
         expect(ctrl.items.size).to.be.equal(0)
-        expect(ctrl.hasNoMorePages).to.be.false
+        expect(ctrl.scrollDisabled).to.be.false
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
 
@@ -382,7 +382,7 @@ describe "ProfileWatched", ->
             expectItems = items.get("data")
 
             expect(ctrl.items.equals(expectItems)).to.be.true
-            expect(ctrl.hasNoMorePages).to.be.true
+            expect(ctrl.scrollDisabled).to.be.false
             expect(ctrl.type).to.be.null
             expect(ctrl.q).to.be.equal(textQuery)
             done()
@@ -405,7 +405,7 @@ describe "ProfileWatched", ->
         mocks.userServices.getWatched.withArgs(user.get("id"), 1, type, null).promise().resolve(items)
 
         expect(ctrl.items.size).to.be.equal(0)
-        expect(ctrl.hasNoMorePages).to.be.false
+        expect(ctrl.scrollDisabled).to.be.false
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
 
@@ -413,7 +413,7 @@ describe "ProfileWatched", ->
             expectItems = items.get("data")
 
             expect(ctrl.items.equals(expectItems)).to.be.true
-            expect(ctrl.hasNoMorePages).to.be.true
+            expect(ctrl.scrollDisabled).to.be.false
             expect(ctrl.type).to.be.type
             expect(ctrl.q).to.be.null
             done()
@@ -436,7 +436,7 @@ describe "ProfileWatched", ->
         mocks.userServices.getWatched.withArgs(user.get("id"), 1, type, null).promise().resolve(items)
 
         expect(ctrl.items.size).to.be.equal(0)
-        expect(ctrl.hasNoMorePages).to.be.false
+        expect(ctrl.scrollDisabled).to.be.false
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
 
@@ -444,7 +444,7 @@ describe "ProfileWatched", ->
             expectItems = items.get("data")
 
             expect(ctrl.items.equals(expectItems)).to.be.true
-            expect(ctrl.hasNoMorePages).to.be.true
+            expect(ctrl.scrollDisabled).to.be.false
             expect(ctrl.type).to.be.type
             expect(ctrl.q).to.be.null
             done()
@@ -467,7 +467,7 @@ describe "ProfileWatched", ->
         mocks.userServices.getWatched.withArgs(user.get("id"), 1, type, null).promise().resolve(items)
 
         expect(ctrl.items.size).to.be.equal(0)
-        expect(ctrl.hasNoMorePages).to.be.false
+        expect(ctrl.scrollDisabled).to.be.false
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
 
@@ -475,7 +475,7 @@ describe "ProfileWatched", ->
             expectItems = items.get("data")
 
             expect(ctrl.items.equals(expectItems)).to.be.true
-            expect(ctrl.hasNoMorePages).to.be.true
+            expect(ctrl.scrollDisabled).to.be.false
             expect(ctrl.type).to.be.type
             expect(ctrl.q).to.be.null
             done()
@@ -498,7 +498,7 @@ describe "ProfileWatched", ->
         mocks.userServices.getWatched.withArgs(user.get("id"), 1, type, null).promise().resolve(items)
 
         expect(ctrl.items.size).to.be.equal(0)
-        expect(ctrl.hasNoMorePages).to.be.false
+        expect(ctrl.scrollDisabled).to.be.false
         expect(ctrl.type).to.be.null
         expect(ctrl.q).to.be.null
 
@@ -506,7 +506,7 @@ describe "ProfileWatched", ->
             expectItems = items.get("data")
 
             expect(ctrl.items.equals(expectItems)).to.be.true
-            expect(ctrl.hasNoMorePages).to.be.true
+            expect(ctrl.scrollDisabled).to.be.false
             expect(ctrl.type).to.be.type
             expect(ctrl.q).to.be.null
             done()

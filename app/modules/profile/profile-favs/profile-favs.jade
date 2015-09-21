@@ -30,8 +30,8 @@ section.profile-favs
               translate="{{ 'USER.PROFILE_FAVS.FILTER_TYPE_ISSUES'|translate }}")
 
     div(infinite-scroll="vm.loadItems()",
-        infinite-scroll-distance="4",
-        infinite-scroll-disabled="vm.hasNoMorePages")
+        infinite-scroll-distance="2",
+        infinite-scroll-disabled="vm.scrollDisabled")
 
         div(tg-repeat="item in vm.items track by $index", ng-switch="item.get('type')")
             div(ng-switch-when="project", tg-fav-item="item", item-type="project")
