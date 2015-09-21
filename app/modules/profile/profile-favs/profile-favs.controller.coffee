@@ -23,10 +23,10 @@ class FavsBaseController
 
     _checkIfHasMorePages: (hasNext)->
         if hasNext
-            @.hasNoMorePages = true
+            @.hasNoMorePages = false
             @._page += 1
         else
-            @.hasNoMorePages = false
+            @.hasNoMorePages = true
 
     _checkIfHasNoResults: ->
         @.hasNoResults = @.items.size == 0
@@ -39,6 +39,12 @@ class FavsBaseController
                 @.items = @.items.concat(response.get("data"))
 
                 @._checkIfHasMorePages(response.get("next"))
+                @._checkIfHasNoResults()
+                @._disableLoadingSpinner()
+
+                return @.items
+            .catch =>
+                @._checkIfHasMorePages(false)
                 @._checkIfHasNoResults()
                 @._disableLoadingSpinner()
 
